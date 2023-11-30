@@ -11,12 +11,27 @@ local cmp = require('cmp')
 local luasnip = require('luasnip')
 
 cmp.setup({
+	window = {
+		completion = {
+			border = "single",
+			winhighlight = "Normal:Normal,FloatBorder:Normal,Search:Normal",
+		},
+		documentation = {
+			border = "single",
+			winhighlight = "Normal:Normal,FloatBorder:Normal,Search:Normal",
+		}
+	},
+	experimental = {
+		ghost_text = true
+	},
+	completion = {
+		autocomplete = false
+	},
 	snippet = {
 		expand = function(args)
 			require('luasnip').lsp_expand(args.body)
 		end,
 	},
-
 	mapping = {
 		["<Tab>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
@@ -39,22 +54,13 @@ cmp.setup({
 				fallback()
 			end
 		end, { "i", "s" }),
-		["<CR>"] = cmp.mapping({
-			i = function(fallback)
-				if cmp.visible() then
-					cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
-				else
-					fallback()
-				end
-			end,
-			s = cmp.mapping.confirm({ select = true }),
-			c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
-		}),
+		["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+		["<CR>"] = cmp.mapping(cmp.mapping.confirm({ select = false }), { 'i', 'c' })
 	},
 
 	formatting = {
 		format = require('lspkind').cmp_format({
-			mode = 'symbol',
+			mode = 'symbol_text',
 		}),
 	},
 
@@ -69,11 +75,30 @@ cmp.setup({
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
+local border = {
+      {"🭽", "FloatBorder"},
+      {"▔", "FloatBorder"},
+      {"🭾", "FloatBorder"},
+      {"▕", "FloatBorder"},
+      {"🭿", "FloatBorder"},
+      {"▁", "FloatBorder"},
+      {"🭼", "FloatBorder"},
+      {"▏", "FloatBorder"},
+}
+
+local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
+  opts = opts or {}
+  opts.border = opts.border or border
+  return orig_util_open_floating_preview(contents, syntax, opts, ...)
+end
+
 require("mason-lspconfig").setup_handlers {
 	function(server_name)
-		require("lspconfig")[server_name].setup {
+		local opts = {
 			capabilities = capabilities
 		}
+		require("lspconfig")[server_name].setup(opts)
 	end,
 }
 

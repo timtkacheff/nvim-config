@@ -1,4 +1,4 @@
-local g = vim.g
+-- local g = vim.g
 local opt = vim.opt
 local o = vim.o
 
@@ -9,7 +9,7 @@ opt.number = true
 opt.relativenumber = true
 opt.ignorecase = true
 opt.wrap = false
-opt.colorcolumn = '97'
+opt.colorcolumn = '120'
 opt.scrolloff = 7
 opt.cmdheight = 1
 o.pumheight = 15

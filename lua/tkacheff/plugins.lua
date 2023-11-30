@@ -1,14 +1,14 @@
 return require('packer').startup(function(use)
 	use 'wbthomason/packer.nvim'
 
-	use { "catppuccin/nvim", as = "catppuccin" }
-
 	use {
 		"loctvl842/monokai-pro.nvim",
 		config = function()
 			require("monokai-pro").setup()
 		end
 	}
+
+	use { "ellisonleao/gruvbox.nvim" }
 
 	use {
 		'nvim-telescope/telescope.nvim', tag = '0.1.4',
@@ -37,7 +37,6 @@ return require('packer').startup(function(use)
 	use {
 		"williamboman/mason.nvim",
 		"williamboman/mason-lspconfig.nvim",
-		"neovim/nvim-lspconfig",
 	}
 
 	use 'neovim/nvim-lspconfig'
@@ -61,8 +60,16 @@ return require('packer').startup(function(use)
 		tag = "*",
 		requires = 'nvim-tree/nvim-web-devicons'
 	}
-
 	use 'famiu/bufdelete.nvim'
+
+	use "tiagovla/scope.nvim"
+
+	use { "anuvyklack/windows.nvim",
+		requires = {
+			"anuvyklack/middleclass",
+			"anuvyklack/animation.nvim"
+		}
+	}
 
 	use {
 		"windwp/nvim-autopairs",
@@ -81,4 +88,9 @@ return require('packer').startup(function(use)
 	use 'stevearc/dressing.nvim'
 
 	use 'lewis6991/gitsigns.nvim'
+
+	use {
+		"gennaro-tedesco/nvim-possession",
+		requires = { "ibhagwan/fzf-lua" }
+	}
 end)
