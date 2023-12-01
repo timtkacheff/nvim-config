@@ -8,34 +8,32 @@ lualine.setup({
 		lualine_c = {
 			{
 				'filename',
-				path = 1
-			},
+				path = 1,
+			}
+		},
+		lualine_y = {
 			{
-				function()
-					if require("nvim-possession").status() ~= nil then
-						return require('nvim-possession').status()
-					end
-					return ""
-				end
-			},
+				'tabs',
+				use_mode_colors = true,
+			}
+		}
+	},
+	inactive_winbar = {
+		lualine_c = {
+			{
+				'filename',
+				path = 1,
+			}
+		}
+	},
+	winbar = {
+		lualine_a = {
+			{
+				'buffers',
+			}
 		}
 	},
 	extensions = {
 		'nvim-tree',
 	},
-	inactive_winbar = {
-		lualine_c = { 'filename' }
-	},
-	winbar = {
-		lualine_c = {
-			{
-				'filename',
-				path = 1
-			},
-			{
-				'diagnostics',
-				symbols = { error = '  ', warn = '  ', info = '  ' },
-			}
-		}
-	}
 })

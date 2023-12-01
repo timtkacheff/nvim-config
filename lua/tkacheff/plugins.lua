@@ -8,8 +8,6 @@ return require('packer').startup(function(use)
 		end
 	}
 
-	use { "ellisonleao/gruvbox.nvim" }
-
 	use {
 		'nvim-telescope/telescope.nvim', tag = '0.1.4',
 		requires = { { 'nvim-lua/plenary.nvim' } }
@@ -55,11 +53,7 @@ return require('packer').startup(function(use)
 		'nvim-lualine/lualine.nvim',
 		requires = { 'nvim-tree/nvim-web-devicons', opt = true }
 	}
-	use {
-		'akinsho/bufferline.nvim',
-		tag = "*",
-		requires = 'nvim-tree/nvim-web-devicons'
-	}
+
 	use 'famiu/bufdelete.nvim'
 
 	use "tiagovla/scope.nvim"

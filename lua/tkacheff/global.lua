@@ -13,7 +13,7 @@ opt.colorcolumn = '120'
 opt.scrolloff = 7
 opt.cmdheight = 1
 o.pumheight = 15
--- o.showtabline = 2
+o.showtabline = 0
 -- o.ch = 0
 
 opt.tabstop = 4
