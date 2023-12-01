@@ -1,16 +1,40 @@
 local aerial = require("aerial")
 local telescope = require("telescope")
 
+local actions = require("telescope.actions")
+
 aerial.setup()
 telescope.load_extension('aerial')
 
 telescope.setup {
+	defaults = {
+		mappings = {
+			n = {
+				["s"] = actions.file_vsplit,
+			},
+		},
+		layout_strategy = "horizontal",
+		layout_config = {
+			horizontal = {
+				prompt_position = "top",
+			},
+		},
+	},
+	pickers = {
+		buffers = {
+			mappings = {
+				n = {
+					["d"] = actions.delete_buffer,
+				}
+			}
+		}
+	},
 	extensions = {
 		aerial = {
 			-- Display symbols as <root>.<parent>.<symbol>
 			show_nesting = {
 				['_'] = false, -- This key will be the default
-				json = true,   -- You can set the option for specific filetypes
+				json = true, -- You can set the option for specific filetypes
 				yaml = true,
 			}
 		}

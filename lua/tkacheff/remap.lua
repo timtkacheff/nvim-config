@@ -18,8 +18,8 @@ map('n', '<C-k>', '<C-w>k')
 map('n', '<C-l>', '<C-w>l')
 
 map('n', '<F5>', ":tabnew<CR>")
-map('n', '<S-h>', ':BufferLineCyclePrev<CR>')
-map('n', '<S-l>', ':BufferLineCycleNext<CR>')
+map('n', '<S-h>', ':bprevious<CR>')
+map('n', '<S-l>', ':bnext<CR>')
 map('n', '<leader>c', ':Bdelete<CR>')
 
 map('n', '<leader>s', ':w!<CR>')
@@ -39,12 +39,3 @@ map('n', '[c', ':TSContextToggle<CR>')
 map('n', '<F3>', ':Telescope aerial<CR>')
 
 map('n', '<F9>', ':Gitsigns blame_line<CR>')
-
-possession = require("nvim-possession")
-
-vim.keymap.set("n", "[s", function()
-	possession.list()
-end)
-vim.keymap.set("n", "[S", function()
-	possession.new()
-end)

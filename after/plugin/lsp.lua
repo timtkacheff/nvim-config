@@ -24,9 +24,6 @@ cmp.setup({
 	experimental = {
 		ghost_text = true
 	},
-	completion = {
-		autocomplete = false
-	},
 	snippet = {
 		expand = function(args)
 			require('luasnip').lsp_expand(args.body)
@@ -44,7 +41,6 @@ cmp.setup({
 				fallback()
 			end
 		end, { "i", "s" }),
-
 		["<S-Tab>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_prev_item()
@@ -54,7 +50,22 @@ cmp.setup({
 				fallback()
 			end
 		end, { "i", "s" }),
-		["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+		["<C-e>"] = cmp.mapping({
+			i = function()
+				if cmp.visible() then
+					cmp.abort()
+				else
+					cmp.complete()
+				end
+			end,
+			c = function()
+				if cmp.visible() then
+					cmp.close()
+				else
+					cmp.complete()
+				end
+			end,
+		}),
 		["<CR>"] = cmp.mapping(cmp.mapping.confirm({ select = false }), { 'i', 'c' })
 	},
 
@@ -76,21 +87,21 @@ cmp.setup({
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 local border = {
-      {"🭽", "FloatBorder"},
-      {"▔", "FloatBorder"},
-      {"🭾", "FloatBorder"},
-      {"▕", "FloatBorder"},
-      {"🭿", "FloatBorder"},
-      {"▁", "FloatBorder"},
-      {"🭼", "FloatBorder"},
-      {"▏", "FloatBorder"},
+	{ "🭽", "FloatBorder" },
+	{ "▔", "FloatBorder" },
+	{ "🭾", "FloatBorder" },
+	{ "▕", "FloatBorder" },
+	{ "🭿", "FloatBorder" },
+	{ "▁", "FloatBorder" },
+	{ "🭼", "FloatBorder" },
+	{ "▏", "FloatBorder" },
 }
 
 local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
 function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
-  opts = opts or {}
-  opts.border = opts.border or border
-  return orig_util_open_floating_preview(contents, syntax, opts, ...)
+	opts = opts or {}
+	opts.border = opts.border or border
+	return orig_util_open_floating_preview(contents, syntax, opts, ...)
 end
 
 require("mason-lspconfig").setup_handlers {

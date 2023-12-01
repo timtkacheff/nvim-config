@@ -23,4 +23,19 @@ lualine.setup({
 	extensions = {
 		'nvim-tree',
 	},
+	inactive_winbar = {
+		lualine_c = { 'filename' }
+	},
+	winbar = {
+		lualine_c = {
+			{
+				'filename',
+				path = 1
+			},
+			{
+				'diagnostics',
+				symbols = { error = '  ', warn = '  ', info = '  ' },
+			}
+		}
+	}
 })
