@@ -16,4 +16,4 @@ require("tkacheff.global")
 --   callback = set_hl_for_floating_window,
 -- })
 --
-vim.cmd('colorscheme monokai-pro-classic')
+vim.cmd('colorscheme monokai-pro-spectrum')

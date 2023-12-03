@@ -82,7 +82,7 @@ cmp.setup({
 		{
 			{ name = 'buffer' },
 		}),
-})
+}, {}, {})
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
@@ -111,6 +111,29 @@ require("mason-lspconfig").setup_handlers {
 		}
 		if server_name == "clangd" then
 			opts.filetypes = { "c", "cpp", "objc", "objcpp", "cuda" }
+		elseif server_name == "lua_ls" then
+			opts = {
+				settings = {
+					Lua = {
+						runtime = {
+							version = 'LuaJIT',
+						},
+						diagnostics = {
+							globals = {
+								'vim',
+								'require'
+							},
+						},
+						workspace = {
+							library = vim.api.nvim_get_runtime_file("", true),
+						},
+						telemetry = {
+							enable = false,
+						},
+					},
+				},
+				capabilities = capabilities,
+			}
 		end
 
 		require("lspconfig")[server_name].setup(opts)
@@ -121,3 +144,5 @@ require("lsp_signature").setup({
 	hint_enable = false,
 	floating_window = false
 })
+
+require('fidget').setup()

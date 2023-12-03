@@ -48,6 +48,7 @@ return require('packer').startup(function(use)
 	use 'saadparwaiz1/cmp_luasnip'
 	use 'onsails/lspkind.nvim'
 	use 'ray-x/lsp_signature.nvim'
+	use 'j-hui/fidget.nvim'
 
 	use {
 		'nvim-lualine/lualine.nvim',

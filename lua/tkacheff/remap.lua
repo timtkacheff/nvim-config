@@ -15,8 +15,12 @@ map('v', '<C-y>', '"+y')
 map('v', 'J', ":m '>+1<CR>gv=gv")
 map('v', 'K', ":m '<-2<CR>gv=gv")
 
+map("n", "n", "nzzzv")
+map("n", "N", "Nzzzv")
+
 -- files
 map("n", "<leader>e", ":NvimTreeToggle<CR>")
+map("n", "<leader>df", "<cmd>Gitsigns diffthis<CR><C-w>h")
 
 -- movement
 map('n', '<C-h>', '<C-w>h')
