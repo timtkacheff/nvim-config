@@ -4,7 +4,7 @@ local o = vim.o
 
 opt.mouse = 'a'
 opt.termguicolors = true
-opt.clipboard = 'unnamedplus'
+-- opt.clipboard = 'unnamedplus'
 opt.number = true
 opt.relativenumber = true
 opt.ignorecase = true

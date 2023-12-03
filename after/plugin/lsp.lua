@@ -109,6 +109,10 @@ require("mason-lspconfig").setup_handlers {
 		local opts = {
 			capabilities = capabilities
 		}
+		if server_name == "clangd" then
+			opts.filetypes = { "c", "cpp", "objc", "objcpp", "cuda" }
+		end
+
 		require("lspconfig")[server_name].setup(opts)
 	end,
 }

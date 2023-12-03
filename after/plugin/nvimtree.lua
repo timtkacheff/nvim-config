@@ -35,7 +35,7 @@ require('nvim-tree').setup({
 				local center_y = ((vim.opt.lines:get() - window_h) / 2)
 					- vim.opt.cmdheight:get()
 				return {
-					border = 'rounded',
+					border = 'single',
 					relative = 'editor',
 					row = center_y,
 					col = center_x,
@@ -69,4 +69,7 @@ require('nvim-tree').setup({
 	diagnostics = {
 		enable = true,
 	},
+	filters = {
+		git_ignored = false,
+	}
 })
