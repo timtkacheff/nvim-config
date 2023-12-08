@@ -8,6 +8,9 @@ return require('packer').startup(function(use)
 		end
 	}
 
+	use 'Mofiqul/dracula.nvim'
+	use 'craftzdog/solarized-osaka.nvim'
+
 	use {
 		'nvim-telescope/telescope.nvim', tag = '0.1.4',
 		requires = { { 'nvim-lua/plenary.nvim' } }

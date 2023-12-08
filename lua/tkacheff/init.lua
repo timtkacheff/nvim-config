@@ -15,5 +15,21 @@ require("tkacheff.global")
 --   desc = 'Avoid overwritten by loading color schemes later',
 --   callback = set_hl_for_floating_window,
 -- })
---
-vim.cmd('colorscheme monokai-pro-spectrum')
+
+require('dracula').setup {
+	colors = {
+		menu = "#282A36"
+	},
+	italic_comment = true,
+}
+
+require('solarized-osaka').setup({
+	transparent = true,
+	styles = {
+		functions = { italic = true },
+		sidebars = "transparent",
+		floats = "transparent",
+	},
+})
+
+vim.cmd('colorscheme solarized-osaka')

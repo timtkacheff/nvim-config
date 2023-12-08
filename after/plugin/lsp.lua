@@ -145,4 +145,11 @@ require("lsp_signature").setup({
 	floating_window = false
 })
 
-require('fidget').setup()
+require('fidget').setup({
+	notification = {
+		window = {
+			winblend = 0,
+			align = "bottom",
+		}
+	}
+})
