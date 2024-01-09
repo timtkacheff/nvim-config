@@ -6,6 +6,20 @@ local function map(mode, lhs, rhs, opts)
 	vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
+local function fill_go_struct()
+	local nline = vim.api.nvim_win_get_cursor(0)[1] - 1
+	local char = vim.api.nvim_win_get_cursor(0)[2]
+
+	vim.lsp.buf.execute_command({
+		arguments = { {
+			Fix = "fill_struct",
+			Range = { ["end"] = { character = char, line = nline }, start = { character = char - 1, line = nline } },
+			URI = vim.uri_from_bufnr(0)
+		} },
+		command = "gopls.apply_fix"
+	})
+end
+
 vim.g.mapleader = " "
 
 -- essentials
@@ -35,7 +49,7 @@ map('n', '<C-w>z', ':WindowsMaximize<CR>')
 map('n', '<F5>', ":tabnew<CR>")
 map('n', '<S-h>', ':bprevious<CR>')
 map('n', '<S-l>', ':bnext<CR>')
-map('n', '<leader>c', ':Bdelete<CR>') -- close only buffer
+map('n', '<leader>c', ':Bdelete<CR>')  -- close only buffer
 map('n', '<leader>q', ':bdelete!<CR>') -- close buffer and split
 
 map('n', '<leader>s', ':w!<CR>')
@@ -44,12 +58,15 @@ map('n', '<leader>s', ':w!<CR>')
 map('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>')
 vim.keymap.set('i', '<C-k>', function() require('lsp_signature').toggle_float_win() end)
 map('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>')
+map('n', 'gD', ':vsplit | lua vim.lsp.buf.definition()<CR>')
 map('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>')
 map('n', '<leader>F', '<cmd>lua vim.lsp.buf.format()<CR>')
 map('n', 'gr', '<cmd>Telescope lsp_references<CR>')
 map('n', '<leader>la', '<cmd>lua vim.lsp.buf.code_action()<CR>')
 map('n', 'gi', '<cmd>Telescope lsp_implementations<CR>')
 map('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<CR>')
+vim.keymap.set('n', '<leader>fs', fill_go_struct)
+
 
 -- treesitter
 map('n', '[c', ':TSContextToggle<CR>')
