@@ -34,16 +34,23 @@ map("n", "N", "Nzzzv")
 
 -- files
 map("n", "<leader>e", ":NvimTreeToggle<CR>")
+map("n", "<leader>E", ":NvimTreeFindFile<CR>")
 map("n", "<leader>df", "<cmd>Gitsigns diffthis<CR><C-w>h")
 
 -- movement
+-- map('n', '<Tab>', '<C-w><C-w>')
+-- map('n', '<S-Tab>', '<C-w>W')
 map('n', '<C-h>', '<C-w>h')
 map('n', '<C-j>', '<C-w>j')
 map('n', '<C-k>', '<C-w>k')
 map('n', '<C-l>', '<C-w>l')
 
--- windows
-map('n', '<C-w>z', ':WindowsMaximize<CR>')
+-- splits
+map('n', '<leader>vv', ':vsplit<CR>')
+map('n', '<leader>vs', ':split<CR>')
+map('n', '<leader>vc', ':close<CR>')
+map('n', '<leader>vx', '<C-w>x')
+map('n', '<leader>vz', ':WindowsMaximize<CR>')
 
 -- tabs & buffers
 map('n', '<F5>', ":tabnew<CR>")
@@ -80,3 +87,7 @@ map('n', '<F9>', ':Gitsigns blame_line<CR>')
 -- terminal
 map('n', '\\\\', ":belowright split term://zsh<CR>")
 map('t', '<Esc>', '<C-\\><C-n>')
+map('t', 'jk', '<C-\\><C-n>')
+
+-- sessions
+map('n', '<leader>ls', ':SessionManager load_current_dir_session<CR>')

@@ -1,9 +1,18 @@
 require('windows').setup({
-	autowidth = {
-		winwidth = 0.5
-	},
-	animation = {
-		duration = 200,
-		fps = 60,
+	ignore = {
+		filetype = {"neotest-summary"}
 	}
 })
+
+require('nvim-cursorline').setup {
+  cursorline = {
+    enable = true,
+    timeout = 1000,
+    number = false,
+  },
+  cursorword = {
+    enable = true,
+    min_length = 3,
+    hl = { underline = true },
+  }
+}

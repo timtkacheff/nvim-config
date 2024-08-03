@@ -1,6 +1,9 @@
 require("mason").setup()
 require("mason-lspconfig").setup()
 
+local configs = require("lspconfig.configs")
+local util = require("lspconfig.util")
+
 local has_words_before = function()
 	unpack = unpack or table.unpack
 	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -104,6 +107,34 @@ function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
 	return orig_util_open_floating_preview(contents, syntax, opts, ...)
 end
 
+if not configs.briefls then
+    configs.briefls = {
+        default_config = {
+            cmd = { "briefls" },
+            filetypes = { "brief" },
+            root_dir = function(fname)
+                return util.root_pattern(".git")(fname)
+            end,
+            single_file_support = true,
+            capabilities = {
+                workspace = {
+                    didChangeWatchedFiles = {
+                        dynamicRegistration = true,
+                    },
+                },
+            },
+        },
+        settings = {},
+    }
+end
+
+require('lspconfig').briefls.setup({
+    flags = {
+        debounce_text_changes = 150,
+    },
+    capabilities = capabilities,
+})
+
 require("mason-lspconfig").setup_handlers {
 	function(server_name)
 		local opts = {
@@ -133,6 +164,15 @@ require("mason-lspconfig").setup_handlers {
 					},
 				},
 				capabilities = capabilities,
+			}
+		elseif server_name == "gopls" then
+			opts = {
+				capabilities = capabilities,
+				settings = {
+					gopls = {
+						buildFlags =  {"-tags=integration"},
+					}
+				}
 			}
 		end
 
