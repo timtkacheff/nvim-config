@@ -1,5 +1,6 @@
 local aerial = require("aerial")
 local telescope = require("telescope")
+local resolve = require("telescope.config.resolve")
 
 local actions = require("telescope.actions")
 
@@ -13,10 +14,15 @@ telescope.setup {
 				["s"] = actions.file_vsplit,
 			},
 		},
-		layout_strategy = "horizontal",
+		layout_strategy = "vertical",
 		layout_config = {
+			width = resolve.resolve_width(0.7),
 			horizontal = {
 				prompt_position = "top",
+			},
+			vertical = {
+				preview_height = resolve.resolve_height(0.6),
+				prompt_position = "bottom",
 			},
 		},
 	},

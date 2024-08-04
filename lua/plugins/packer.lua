@@ -123,4 +123,10 @@ return require('packer').startup(function(use)
 	use 'aserowy/tmux.nvim'
 
 	use 'folke/todo-comments.nvim'
+
+	use { "rcarriga/nvim-dap-ui",
+		requires = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" }
+	}
+	use 'leoluz/nvim-dap-go'
+
 end)

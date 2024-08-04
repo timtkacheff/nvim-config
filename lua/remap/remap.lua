@@ -1,24 +1,4 @@
-local function map(mode, lhs, rhs, opts)
-	local options = { noremap = true, silent = true }
-	if opts then
-		options = vim.tbl_extend('force', options, opts)
-	end
-	vim.api.nvim_set_keymap(mode, lhs, rhs, options)
-end
-
-local function fill_go_struct()
-	local nline = vim.api.nvim_win_get_cursor(0)[1] - 1
-	local char = vim.api.nvim_win_get_cursor(0)[2]
-
-	vim.lsp.buf.execute_command({
-		arguments = { {
-			Fix = "fill_struct",
-			Range = { ["end"] = { character = char, line = nline }, start = { character = char - 1, line = nline } },
-			URI = vim.uri_from_bufnr(0)
-		} },
-		command = "gopls.apply_fix"
-	})
-end
+local map = require('remap.base').map
 
 vim.g.mapleader = " "
 
@@ -72,8 +52,6 @@ map('n', 'gr', '<cmd>Telescope lsp_references<CR>')
 map('n', '<leader>la', '<cmd>lua vim.lsp.buf.code_action()<CR>')
 map('n', 'gi', '<cmd>Telescope lsp_implementations<CR>')
 map('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<CR>')
-vim.keymap.set('n', '<leader>fs', fill_go_struct)
-
 
 -- treesitter
 map('n', '[c', ':TSContextToggle<CR>')
