@@ -47,17 +47,19 @@ require("dapui").setup(
 			position = "left",
 			size = 90
 		},
-			-- {
-			-- 	elements = { {
-			-- 		id = "repl",
-			-- 		size = 0.5
-			-- 	}, {
-			-- 		id = "console",
-			-- 		size = 0.5
-			-- 	} },
-			-- 	position = "bottom",
-			-- 	size = 10
-			-- }
+			{
+				elements = {
+					-- {
+					-- 	id = "console",
+					-- 	size = 0.5
+					-- },
+					{
+						id = "repl",
+						size = 1
+					} },
+				position = "bottom",
+				size = 10
+			}
 		},
 		mappings = {
 			edit = "e",

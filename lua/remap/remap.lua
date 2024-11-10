@@ -69,3 +69,26 @@ map('t', 'jk', '<C-\\><C-n>')
 
 -- sessions
 map('n', '<leader>ls', ':SessionManager load_current_dir_session<CR>')
+
+local isUiOpen = false
+
+map('n', '<leader>db', function()
+	if isUiOpen == false then
+		isUiOpen = true
+		require("nvim-tree.api").tree.close()
+		require("dapui").close()
+		require('dapui').open({ reset = true })
+	else
+		isUiOpen = false
+		vim.keymap.set('n', '<CR>', '<CR>')
+
+		require("dapui").close()
+	end
+end)
+
+map('n', '<leader>dq', function()
+	require('dap').terminate()
+	vim.keymap.set('n', '<CR>', '<CR>')
+end)
+
+map('n', '<leader>br', function() require('dap').toggle_breakpoint() end)

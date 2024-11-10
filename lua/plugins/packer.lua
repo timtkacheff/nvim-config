@@ -11,6 +11,7 @@ return require('packer').startup(function(use)
 	use 'Mofiqul/dracula.nvim'
 	use { "sainnhe/gruvbox-material" }
 	use 'Shatur/neovim-ayu'
+	use 'rebelot/kanagawa.nvim'
 
 	use 'f-person/auto-dark-mode.nvim'
 
@@ -43,6 +44,7 @@ return require('packer').startup(function(use)
 		"williamboman/mason-lspconfig.nvim",
 	}
 
+	use 'ray-x/go.nvim'
 	use 'neovim/nvim-lspconfig'
 	use 'hrsh7th/cmp-nvim-lsp'
 	use 'hrsh7th/cmp-buffer'
@@ -128,5 +130,4 @@ return require('packer').startup(function(use)
 		requires = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" }
 	}
 	use 'leoluz/nvim-dap-go'
-
 end)
