@@ -1,1 +1,3 @@
-require("tkacheff")
+require('settings')
+require('remap')
+require('plugins')
